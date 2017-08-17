@@ -12,20 +12,38 @@ var main = require("../lib/main.js");
 describe("测试描述", function(){
     sinon.spy(console, 'log');
 
-    it("测试用例1", function(){
+    it("input '95713' get '||:|:::|:|:|:::|:::||::||::|:|:|'", function(){
 
-        var result = main();
-        var expect_string = '';
-        
-        expect(expect_string).to.equal(result);
+        var result = main('95713');
+        var expect_string = '||:|:::|:|:|:::|:::||::||::|:|:|';
+
+        expect(result).to.equal(expect_string);
     });
 
-    it("测试用例2", function(){
+    it("input '12345-6789' get '|:::||::|:|::||::|::|:|:|::||::|:::||::|:|:|:::|:|:|'", function(){
 
-        main();
-        var result = _.flatten(console.log.args).join("\n");
-        var expect_string = '';
+        var result = main('12345-6789');
+        var expect_string = '|:::||::|:|::||::|::|:|:|::||::|:::||::|:|:|:::|:|:|';
 
-        expect(expect_string).to.equal(result);
+        expect(result).to.equal(expect_string);
     });
+
+    it("input '||:|:::|:|:|:::|:::||::||::|:|:|' get '95713'", function(){
+
+        var result = main('||:|:::|:|:|:::|:::||::||::|:|:|');
+        var expect_string = '95713';
+
+        expect(result).to.equal(expect_string);
+    });
+
+    it("input '|:::||::|:|::||::|::|:|:|::||::|:::||::|:|:|:::|:|:|' get '12345-6789'", function(){
+
+        var result = main('|:::||::|:|::||::|::|:|:|::||::|:::||::|:|:|:::|:|:|');
+        var expect_string = '12345-6789';
+
+        expect(result).to.equal(expect_string);
+    });
+
+
+
 });
